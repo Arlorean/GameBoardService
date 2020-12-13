@@ -2,7 +2,9 @@
 
 A web service to return an **svg** file for a given board game given the url as the board state.
 
-# Sudoku
+This is currently hosted on Azure at https://gameboardservice.azurewebsites.net/.
+
+## Sudoku
 
 ```
 /sudoku/<81 characters>.svg
@@ -16,8 +18,11 @@ e.g.
 /sudoku/004200030002104005160900000835000060000000000040000378000007019500602700090003200.svg
 ```
 
-displays the following SVG image:
+display the following SVG images:
 
-**TODO**
+<img src="https://gameboardservice.azurewebsites.net//sudoku/7..25..98..6....1....61.3..9....1.......8.4.9..75.28.1.94..3.......4923.61.....4..svg" width="200" />
+<img src="https://gameboardservice.azurewebsites.net//sudoku/004200030002104005160900000835000060000000000040000378000007019500602700090003200.svg" width="200" />
 
 Here are some [more examples](http://forum.enjoysudoku.com/patterns-game-results-t6291.html).
+
+Also see my [SudokuSolver](https://github.com/Arlorean/SudokuSolver) repository for more test cases that use this service in the [README.md](https://github.com/Arlorean/SudokuSolver/blob/master/README.md#performance) file.
