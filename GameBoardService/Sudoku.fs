@@ -1,7 +1,7 @@
 module Sudoku
 
 open Giraffe
-open GiraffeViewEngine
+open Giraffe.ViewEngine
 
 let svg = tag "svg"
 let text = tag "text"
@@ -61,4 +61,4 @@ let generateSvg problem =
     } |> Seq.toList)
 
 let svgView problem = 
-    htmlView (generateSvg problem)
+    Views.svgView (generateSvg problem)
