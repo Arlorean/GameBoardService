@@ -28,7 +28,7 @@ let number (r:int) (c:int) (size:int) (v:string) =
 let numbers (problem:string) = seq {
     for r in 0..8 do
         for c in 0..8 do
-            let i = c+(r*8)
+            let i = c+(r*9)
             if (problem = null || i >= problem.Length)
             then number r c 10 " "
             else number r c 10 problem.[i..i]
