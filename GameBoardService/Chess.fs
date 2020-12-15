@@ -9,27 +9,51 @@ let asciiToUnicode =
         ('P', '♙'); ('R', '♖'); ('N', '♘'); ('B', '♗'); ('Q', '♕'); ('K', '♔'); 
     ]
 
-let square (r:int) (c:int) =
-    let className = if (r%2+c)%2 = 0 then "white" else "black"
+let styles =
+    style [] [
+        rawText "text {\
+            font-size: 0.9px;\
+            font-family: 'Arial Unicode MS', system-ui, sans-serif;\
+            text-anchor: middle;\
+        }"
+        rawText ".b {\
+            fill: silver;\
+            stroke: none;\
+        }"
+        rawText ".w {\
+            fill: white;\
+            stroke: none;\
+        }"
+    ]
+
+let whiteSquares =
     rect [
+        attr "class" "w"
+        attr "width" "8"
+        attr "height" "8"
+    ] []
+    
+let blackSquare (r:int) (c:int) =
+    rect [
+        attr "class" "b"
         attr "x" $"{c}"
         attr "y" $"{r}"
         attr "width" "1"
         attr "height" "1"
-        attr "class" $"{className}"
     ] []
+
+let blackSquares = seq {
+    for r in 0..7 do
+        for c in 0..7 do
+            if (r+c)%2 = 1 then 
+                blackSquare r c
+}
 
 let piece (r:int) (c:int) (v:string) =
     text [
         attr "x" $"{float c+0.5}"
-        attr "y" $"{float r+0.5}"
+        attr "y" $"{float r+0.9}"
     ] [ str v ]
-
-let squares = seq {
-    for r in 0..7 do
-        for c in 0..7 do
-            square r c
-}
 
 let pieces (ranks:string[]) = seq {
     for r in 0..ranks.Length-1 do
@@ -56,14 +80,6 @@ let outline =
         attr "stroke-width" $"{d}"
     ] []
 
-
-let styles =
-    style [] [
-        rawText "text { font-size: 0.9px; font-family: -apple-system,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,Helvetica Neue,sans-serif; text-anchor: middle; alignment-baseline: central; }"
-        rawText ".white { fill: white; stroke: none; }"
-        rawText ".black { fill: silver; stroke: none; }"
-    ]
-
 let generateSvg (ranks:string[]) =
     svg [
         attr "viewBox" "0 0 8 8"
@@ -71,7 +87,8 @@ let generateSvg (ranks:string[]) =
         attr "xmlns:xlink" "http://www.w3.org/1999/xlink"
     ] (seq {
         yield styles
-        yield! squares
+        yield whiteSquares
+        yield! blackSquares
         yield! pieces ranks
         yield outline
     } |> Seq.toList)
