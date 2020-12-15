@@ -3,7 +3,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Svg.fs" />
     <Compile Include="Views.fs" />
+    <Compile Include="Chess.fs" />
     <Compile Include="Sudoku.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

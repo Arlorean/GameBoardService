@@ -1,11 +1,7 @@
 module Sudoku
 
-open Giraffe
 open Giraffe.ViewEngine
-
-let svg = tag "svg"
-let text = tag "text"
-let rect = tag "rect"
+open Svg
 
 let square (r:int) (c:int) (size:int) (width:float) =
     rect [
