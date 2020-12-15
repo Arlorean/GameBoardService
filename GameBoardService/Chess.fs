@@ -35,12 +35,12 @@ let pieces (ranks:string[]) = seq {
     for r in 0..ranks.Length-1 do
         let rank = ranks.[r]
         let mutable c = 0
-        while c < 8 do
-            match rank.[c] with
+        for i in 0..rank.Length-1 do
+            match rank.[i] with
             | n when n>='0' && n<='9' ->
-                c <- c + (int n)
+                c <- c + (int (string n))
             | p ->               
-                piece r c (string asciiToUnicode.[p])
+                yield piece r c (string asciiToUnicode.[p])
                 c <- c + 1
 }
 
