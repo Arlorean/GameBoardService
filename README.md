@@ -5,7 +5,7 @@ A web service to return an **svg** file for a given board game given the url as 
 - [Chess](#chess)
 - [Sudoku](#sudoku)
 
-This is currently hosted on Azure at https://gameboardservice.azurewebsites.net/.
+The service is implemented in [F#](https://fsharp.org/) using [Saturn](https://saturnframework.org/) and [Giraffe](https://giraffe.wiki/), and is hosted live on Azure at `https://gameboardservice.azurewebsites.net/<game-type>/<board-state>.svg`.
 
 ## Chess
 
