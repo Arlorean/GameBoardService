@@ -22,8 +22,12 @@ e.g.
 /chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg
 ```
 
-<a href="https://gameboardservice.azurewebsites.net/chess/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR.svg"><img src="https://gameboardservice.azurewebsites.net/chess/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR.svg" width="200" /></a>
-<a href="https://gameboardservice.azurewebsites.net/chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg"><img src="https://gameboardservice.azurewebsites.net/chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg" width="200" /></a>
+<a href="https://gameboardservice.azurewebsites.net/chess/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR.svg"><img src="https://gameboardservice.azurewebsites.net/chess/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR.svg?" width="200" /></a>
+<a href="https://gameboardservice.azurewebsites.net/chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg"><img src="https://gameboardservice.azurewebsites.net/chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg?" width="200" /></a>
+
+Originally this used the Unicode symbols for chess pieces but they varied so much in quality and metrics across all the platforms that embedding SVG definitions of each of the chess pieces was the best way to get a consistent rendering between platforms. Also when an SVG is used as an IMG in HTML external [references to fonts are ignored](https://css-tricks.com/using-custom-fonts-with-svg-in-an-image-tag/#the-image-tag) for security reasons making it always use the system font.
+
+The SVG Chess Pieces were created by [jurgenwesterhof](https://en.wikipedia.org/wiki/User:Jurgenwesterhof) (adapted from work of [Cburdett](https://en.wikipedia.org/wiki/User:Cburnett)) [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) and taken from [wikimedia.org](https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces). The SVG was then minified and hand optimized turning attributes into class names to reduce the size further.
 
 ## Sudoku
 
