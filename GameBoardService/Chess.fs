@@ -9,11 +9,16 @@ let asciiToUnicode =
         ('P', '♙'); ('R', '♖'); ('N', '♘'); ('B', '♗'); ('Q', '♕'); ('K', '♔'); 
     ]
 
-let styles =
+let styles = seq {
+    defs [] [
+        style [] [
+            rawText "@import url('https://fonts.googleapis.com/css?family=Gothic+A1:400');"
+        ]
+    ]
     style [] [
         rawText "text {\
-            font-size: 0.9px;\
-            font-family: 'Arial Unicode MS', system-ui, sans-serif;\
+            font-size: 1px;\
+            font-family: 'Gothic A1', sans-serif;\
             text-anchor: middle;\
         }"
         rawText ".b {\
@@ -25,6 +30,7 @@ let styles =
             stroke: none;\
         }"
     ]
+}
 
 let whiteSquares =
     rect [
@@ -52,7 +58,7 @@ let blackSquares = seq {
 let piece (r:int) (c:int) (v:string) =
     text [
         attr "x" $"{float c+0.5}"
-        attr "y" $"{float r+0.9}"
+        attr "y" $"{float r+0.88}"
     ] [ str v ]
 
 let pieces (ranks:string[]) = seq {
@@ -62,7 +68,8 @@ let pieces (ranks:string[]) = seq {
         for i in 0..rank.Length-1 do
             match rank.[i] with
             | n when n>='0' && n<='9' ->
-                c <- c + (int (string n))
+                let s = (int (string n))
+                c <- c + s
             | p ->               
                 yield piece r c (string asciiToUnicode.[p])
                 c <- c + 1
@@ -86,7 +93,7 @@ let generateSvg (ranks:string[]) =
         attr "xmlns" "http://www.w3.org/2000/svg"
         attr "xmlns:xlink" "http://www.w3.org/1999/xlink"
     ] (seq {
-        yield styles
+        yield! styles
         yield whiteSquares
         yield! blackSquares
         yield! pieces ranks
