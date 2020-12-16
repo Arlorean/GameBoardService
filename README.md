@@ -22,8 +22,6 @@ e.g.
 /chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg
 ```
 
-display the following SVG images:
-
 <a href="https://gameboardservice.azurewebsites.net/chess/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR.svg"><img src="https://gameboardservice.azurewebsites.net/chess/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR.svg" width="200" /></a>
 <a href="https://gameboardservice.azurewebsites.net/chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg"><img src="https://gameboardservice.azurewebsites.net/chess/r1bq3k/pp2bp1r/2n1p2B/2pnP3/3P4/2PB1N1Q/PP4P1/RN3RK1.svg" width="200" /></a>
 
@@ -40,8 +38,6 @@ e.g.
 /sudoku/7..25..98..6....1....61.3..9....1.......8.4.9..75.28.1.94..3.......4923.61.....4..svg
 /sudoku/004200030002104005160900000835000060000000000040000378000007019500602700090003200.svg
 ```
-
-display the following SVG images:
 
 <a href="https://gameboardservice.azurewebsites.net/sudoku/7..25..98..6....1....61.3..9....1.......8.4.9..75.28.1.94..3.......4923.61.....4..svg"><img src="https://gameboardservice.azurewebsites.net/sudoku/7..25..98..6....1....61.3..9....1.......8.4.9..75.28.1.94..3.......4923.61.....4..svg" width="200" /></a>
 <a href="https://gameboardservice.azurewebsites.net/sudoku/004200030002104005160900000835000060000000000040000378000007019500602700090003200.svg"><img src="https://gameboardservice.azurewebsites.net/sudoku/004200030002104005160900000835000060000000000040000378000007019500602700090003200.svg" width="200" /></a>
