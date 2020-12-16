@@ -14,11 +14,6 @@ let definitions =
 
 let styles = 
     style [] [
-        rawText "text {\
-            font-size: 1px;\
-            font-family: 'Gothic A1', sans-serif;\
-            text-anchor: middle;\
-        }"
         rawText ".b {\
             fill: silver;\
             stroke: none;\
