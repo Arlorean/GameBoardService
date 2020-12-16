@@ -2,19 +2,17 @@ module Chess
 
 open Giraffe.ViewEngine
 open Svg
+open System
 
-let asciiToUnicode =
-    dict [
-        ('p', '♟'); ('r', '♜'); ('n', '♞'); ('b', '♝'); ('q', '♛'); ('k', '♚');
-        ('P', '♙'); ('R', '♖'); ('N', '♘'); ('B', '♗'); ('Q', '♕'); ('K', '♔'); 
-    ]
+/// Each SVG chess piece is 45x45
+let sz d = float d*45.0
 
-let styles = seq {
-    defs [] [
-        style [] [
-            rawText "@import url('https://fonts.googleapis.com/css?family=Gothic+A1:400');"
-        ]
-    ]
+/// Original chess piece artwork by Cburnett
+/// (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces)
+let definitions =
+    rawText (System.IO.File.ReadAllText "defs.xml")
+
+let styles = 
     style [] [
         rawText "text {\
             font-size: 1px;\
@@ -30,22 +28,21 @@ let styles = seq {
             stroke: none;\
         }"
     ]
-}
 
 let whiteSquares =
     rect [
         attr "class" "w"
-        attr "width" "8"
-        attr "height" "8"
+        attr "width" $"{sz 8}"
+        attr "height" $"{sz 8}"
     ] []
     
 let blackSquare (r:int) (c:int) =
     rect [
         attr "class" "b"
-        attr "x" $"{c}"
-        attr "y" $"{r}"
-        attr "width" "1"
-        attr "height" "1"
+        attr "x" $"{sz c}"
+        attr "y" $"{sz r}"
+        attr "width" $"{sz 1}"
+        attr "height" $"{sz 1}"
     ] []
 
 let blackSquares = seq {
@@ -55,11 +52,17 @@ let blackSquares = seq {
                 blackSquare r c
 }
 
-let piece (r:int) (c:int) (v:string) =
-    text [
-        attr "x" $"{float c+0.5}"
-        attr "y" $"{float r+0.88}"
-    ] [ str v ]
+let charToId c =
+    if Char.IsLower c
+    then "b"+(c |> string)
+    else "w"+(Char.ToLower c |> string)
+
+let piece (r:int) (c:int) (p:char) =
+    _use [
+        attr "xlink:href" $"#{(charToId p)}"
+        attr "x" $"{sz c}"
+        attr "y" $"{sz r}"
+    ]
 
 let pieces (ranks:string[]) = seq {
     for r in 0..ranks.Length-1 do
@@ -71,29 +74,29 @@ let pieces (ranks:string[]) = seq {
                 let s = (int (string n))
                 c <- c + s
             | p ->               
-                yield piece r c (string asciiToUnicode.[p])
+                yield piece r c p
                 c <- c + 1
 }
 
 let outline =
-    let d = 0.02
     rect [
-        attr "x" $"{d*0.5}"
-        attr "y" $"{d*0.5}"
-        attr "width" $"{8.0-d}"
-        attr "height" $"{8.0-d}"
+        attr "x" "0.5"
+        attr "y" "0.5"
+        attr "width" $"{(sz 8)-1.0}"
+        attr "height" $"{(sz 8)-1.0}"
         attr "fill" "none"
         attr "stroke" "currentColor"
-        attr "stroke-width" $"{d}"
+        attr "stroke-width" "1"
     ] []
 
 let generateSvg (ranks:string[]) =
     svg [
-        attr "viewBox" "0 0 8 8"
+        attr "viewBox" $"0 0 {sz 8} {sz 8}"
         attr "xmlns" "http://www.w3.org/2000/svg"
         attr "xmlns:xlink" "http://www.w3.org/1999/xlink"
     ] (seq {
-        yield! styles
+        yield definitions
+        yield styles
         yield whiteSquares
         yield! blackSquares
         yield! pieces ranks
